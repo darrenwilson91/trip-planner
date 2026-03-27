@@ -7,3 +7,188 @@ Status: completed
 Changes: Created branch feature/issue-1-trip-planner-catalogue
 Notes: Branch created from main at cd090c9
 
+--- Iteration 2: Fri 27 Mar 2026 ---
+Task: Phase 1 - Scaffold Astro project with Tailwind CSS
+Status: completed
+Changes: .gitignore, astro.config.mjs, package.json, package-lock.json, tsconfig.json, src/pages/index.astro, src/styles/global.css, public/favicon.ico, public/favicon.svg
+Notes: Scaffolded Astro minimal template, installed dependencies, added Tailwind CSS via astro add. Build verified successfully. Commit b95b1e7.
+
+--- Iteration 3: Fri 27 Mar 2026 ---
+Task: Phase 1 - Configure Astro content collection for destinations
+Status: completed
+Changes: src/content.config.ts, src/content/destinations/ (empty directory)
+Notes: Created content collection schema with Zod validation for all destination fields (title, country, region, images, costs, allergen ratings, etc.). Created empty destinations directory. Build verified successfully (warning about no files expected). Commit 5f7f32d.
+
+--- Iteration 4: Thu 27 Mar 2026 ---
+Task: Phase 2 - Create base HTML layout
+Status: completed
+Changes: src/layouts/BaseLayout.astro
+Notes: Created BaseLayout.astro with DOCTYPE, viewport meta, system font stack, page title template, meta description prop, bg-stone-50/text-stone-800 body styling, header with site name linking to /, semantic main with slot, and footer with copyright. Build verified successfully. Commit 120706b.
+
+--- Iteration 5: Fri 27 Mar 2026 ---
+Task: Phase 2 - Create destination card component
+Status: completed
+Changes: src/components/DestinationCard.astro
+Notes: Created DestinationCard.astro with hero image (lazy loading, 3:2 aspect ratio), title, country, summary (line-clamp-2), quick facts row (trip length, hotel/flight costs in GBP), and colour-coded allergen badges (green 4-5, amber 3, red 1-2). Card links to /destinations/{slug}. Build verified successfully. Commit 4c254bd.
+
+--- Iteration 6: Fri 27 Mar 2026 ---
+Task: Phase 2 - Create allergen badge component
+Status: completed
+Changes: src/components/AllergenBadge.astro, src/components/DestinationCard.astro
+Notes: Created reusable AllergenBadge.astro with props for rating, label, and optional size (sm/lg). Colour-coded: green (4-5), amber (3), red (1-2). Large size variant for detail pages. Refactored DestinationCard to use the new component, removing duplicated badge logic. Build verified successfully. Commit 309ed3c.
+
+--- Iteration 7: Fri 27 Mar 2026 ---
+Task: Phase 3 - Create homepage with destination grid and filters
+Status: completed
+Changes: src/pages/index.astro, src/content/destinations/barcelona.md
+Notes: Created homepage with hero section ("Where to Next?"), region filter tabs (All/Europe/Americas/Asia/Oceania/Africa), nut-safe only toggle button, and responsive card grid (1/2/3 columns). Filter logic implemented via inline script using data attributes. Created Barcelona test destination with full content (frontmatter + 4 body sections). Build verified successfully — 1 page built. Commit 284780c.
+
+--- Iteration 8: Thu 27 Mar 2026 ---
+Task: Phase 4 - Create destination detail page template
+Status: completed
+Changes: src/pages/destinations/[slug].astro, src/styles/global.css, package.json, package-lock.json
+Notes: Created [slug].astro with hero image + gradient overlay, quick facts bar (best months, trip length, hotel/flight costs with emoji icons), allergen safety section with large badges and notes, prose-styled markdown content rendering, image gallery (2-col grid), and back navigation links at top and bottom. Installed @tailwindcss/typography and added plugin to global.css. Fixed Astro v6 API: used `render(entry)` from astro:content instead of deprecated `entry.render()`. Build verified — 2 pages (homepage + Barcelona detail). Commit 869bd15.
+
+--- Iteration 9: Fri 27 Mar 2026 ---
+Task: Phase 5 - Destination Content: Europe batch 1 (Barcelona to Berlin)
+Status: completed
+Changes: src/content/destinations/{lisbon,amsterdam,copenhagen,rome,dubrovnik,edinburgh,reykjavik,paris,berlin}.md
+Notes: Created 9 new European destination files (Barcelona already had full content from Phase 3). Each file has complete frontmatter (costs, ratings, images, allergen notes) and 4 body sections (Things to Do, The Vibe, Things to See, Allergen & Dietary Detail). Content written as friend-to-friend recommendations with specific place names, honest allergen assessments, and no AI slop. Real Unsplash photo URLs used. Build verified — 11 pages (1 homepage + 10 destinations). Commit 4724d83.
+
+--- Iteration 10: Fri 27 Mar 2026 ---
+Task: Phase 6 - Create Vienna destination content
+Status: completed
+Changes: src/content/destinations/vienna.md
+Notes: Created Vienna, Austria destination with complete frontmatter (nut: 3, veggie: 4, £80 flights, £130/night hotel, 3-4 nights) and 4 body sections. Content covers Naschmarkt, Schönbrunn, MuseumsQuartier, coffee house culture, Ringstrasse. Honest nut allergy warnings about Austrian baking (Linzer torte, Esterhazy torte, marzipan) with safe savoury options noted. Real Unsplash photos used. Build verified — 12 pages. Commit d0d8fb7.
+
+--- Iteration 11: Fri 27 Mar 2026 ---
+Task: Phase 6 - Create Prague destination content
+Status: completed
+Changes: src/content/destinations/prague.md
+Notes: Created Prague, Czech Republic destination with complete frontmatter (nut: 4, veggie: 3, £60 flights, £90/night hotel, 3-4 nights) and 4 body sections. Content covers Charles Bridge, Old Town Square, Letná Park, Žižkov and Vinohrady neighbourhoods, Petřín Hill, Strahov Monastery. Honest about Czech food being meat-heavy for vegetarians but highlights modern scene in Vinohrady/Karlín. Nut-safe traditional cuisine noted with dessert cautions. Real Unsplash photos used. Build verified — 13 pages. Commit 900fd8e.
+
+--- Iteration 12: Thu 27 Mar 2026 ---
+Task: Phase 6 - Create Athens destination content
+Status: completed
+Changes: src/content/destinations/athens.md
+Notes: Created Athens, Greece destination with complete frontmatter (nut: 3, veggie: 4, £100 flights, £100/night hotel, 4-5 nights) and 4 body sections. Content covers Acropolis, Ancient Agora, Monastiraki flea market, Exarcheia neighbourhood, Plaka, Koukaki. Honest about nut risks in Greek pastries (baklava, kataifi) and skordalia dip, while noting savoury dishes are generally safe. Highlighted excellent vegetarian options from Greek Orthodox fasting traditions — gigantes plaki, spanakopita, horta, briam. Real Unsplash photos used. Build verified — 14 pages. Commit 59068c6.
+
+--- Iteration 13: Thu 27 Mar 2026 ---
+Task: Phase 6 - Create Porto destination content
+Status: completed
+Changes: src/content/destinations/porto.md
+Notes: Created Porto, Portugal destination with complete frontmatter (nut: 4, veggie: 3, £70 flights, £90/night hotel, 3-4 nights) and 4 body sections. Content covers Dom Luís I bridge, Vila Nova de Gaia port tastings (Taylor's, Graham's), Bolhão Market, São Bento station azulejo tiles, Livraria Lello, Serralves Museum, Cedofeita and Bonfim neighbourhoods. Honest about vegetarian limitations in traditional Porto cuisine (francesinha, tripas) with pointers to Cedofeita for modern veggie options. Nut-safe savoury food with dessert cautions (almond-based convent sweets). Real Unsplash photos used. Build verified — 15 pages. Commit 0084ec9.
+
+--- Iteration 14: Thu 27 Mar 2026 ---
+Task: Phase 6 - Create Stockholm destination content
+Status: completed
+Changes: src/content/destinations/stockholm.md
+Notes: Created Stockholm, Sweden destination with complete frontmatter (nut: 5, veggie: 4, £80 flights, £170/night hotel, 3-4 nights) and 4 body sections. Content covers Gamla Stan (Stortorget, Mårten Trotzigs Gränd), Vasa Museum on Djurgården, ABBA Museum, Södermalm (Skinnarviksberget, SoFo, Hornstull), Fotografiska, Moderna Museet, Östermalm Saluhall, archipelago ferry to Vaxholm. Highlighted Sweden's excellent allergen laws and bakery-specific nut cautions (marzipan, prinsesstårta). Strong vegetarian coverage — Hermans buffet, Södermalm plant-based scene. Real Unsplash photos used. Build verified — 16 pages. Commit ee8afd5.
+
+--- Iteration 15: Thu 27 Mar 2026 ---
+Task: Phase 6 - Create Budapest destination content
+Status: completed
+Changes: src/content/destinations/budapest.md
+Notes: Created Budapest, Hungary destination with complete frontmatter (nut: 3, veggie: 3, £70 flights, £80/night hotel, 3-4 nights) and 4 body sections. Content covers Chain Bridge, Fisherman's Bastion, Széchenyi and Rudas thermal baths, ruin bars (Szimpla Kert, Élesztő), Parliament Building, Central Market Hall, Margaret Island, Szentendre day trip. Honest about nut risks in Hungarian patisseries (Dobos torte, walnut strudel, Gerbeaud café) with safe savoury options (goulash, lángos). Vegetarian guidance: Jewish Quarter restaurants (Mazel Tov, Kőleves), főzelék bars, Hummus Bar. Included Hungarian allergy phrase. Real Unsplash photos used. Build verified — 17 pages. Commit 8c292f0.
+
+--- Iteration 16: Fri 27 Mar 2026 ---
+Task: Phase 6 - Create Bruges destination content
+Status: completed
+Changes: src/content/destinations/bruges.md
+Notes: Created Bruges, Belgium destination with complete frontmatter (nut: 3, veggie: 3, £60 flights, £120/night hotel, 2-3 nights) and 4 body sections. Content covers Markt square, Belfry tower climb, Burg square, Basilica of the Holy Blood, canal boat tours, De Halve Maan brewery, Café Rose Red. Things to See: Groeninge Museum (Flemish Primitives), Gruuthuse Museum, Kruisvest windmills, Begijnhof, cycling to Damme village. Honest about chocolate shops being a major nut risk (pralines filled with hazelnuts/almonds/pistachios) while savoury food (frites, stoofvlees, plain waffles) is safe. Vegetarian guidance: kaaskroketten reliable, tourist menus meat-heavy, better options south of 't Zand square. Real Unsplash photos used. Build verified — 18 pages. Commit 466c400.
+
+--- Iteration 17: Fri 27 Mar 2026 ---
+Task: Phase 6 - Create Lake Como destination content
+Status: completed
+Changes: src/content/destinations/lake-como.md
+Notes: Created Lake Como, Italy destination with complete frontmatter (nut: 3, veggie: 4, £80 flights to Milan, £160/night hotel, 3-4 nights) and 4 body sections. Content covers ferry network between Bellagio/Varenna/Menaggio, Villa Serbelloni gardens, Passeggiata degli Innamorati in Varenna, Villa Carlotta botanical gardens in Tremezzo, Villa Monastero, Como town Duomo, Brunate funicular, Greenway del Lago trail. Honest about Italian nut cautions — amaretti biscuits (ground almonds) as local speciality, pesto with pine nuts, hazelnut gelato; safe savoury options in risotto, polenta taragna, burro e salvia pasta. Vegetarian well-served by northern Italian risotto/pasta/polenta traditions. Real Unsplash photos used. Build verified — 19 pages. Commit cb81570.
+
+--- Iteration 18: Fri 27 Mar 2026 ---
+Task: Phase 6 - Create Seville destination content
+Status: completed
+Changes: src/content/destinations/seville.md
+Notes: Created Seville, Spain destination with complete frontmatter (nut: 4, veggie: 4, £90 flights, £100/night hotel, 3-4 nights) and 4 body sections. Content covers Real Alcázar (advance booking tip), Santa Cruz quarter, Triana tapas hopping (Calle San Jacinto, La Primera del Puente, Casa Cuesta), Plaza de España, the Cathedral and Giralda tower, Metropol Parasol (Las Setas), Parque de María Luisa. Strong summer heat warning (avoid Jul-Aug). Honest nut assessment — tapas tradition makes ingredients transparent, main risks are desserts/turrón/polvorones. Vegetarian highlight: espinacas con garbanzos as a Seville signature, salmorejo, berenjenas con miel. Alameda de Hércules for progressive food scene. Real Unsplash photos used. Build verified — 20 pages. Commit 2a045e5.
+
+--- Iteration 19: Fri 27 Mar 2026 ---
+Task: Phase 6 - Create Marseille destination content
+Status: completed
+Changes: src/content/destinations/marseille.md
+Notes: Created Marseille, France destination with complete frontmatter (nut: 3, veggie: 3, £70 flights, £110/night hotel, 3-4 nights) and 4 body sections. Content covers Vieux Port fish market, Notre-Dame de la Garde, Calanques hiking (Sugiton, Marseilleveyre), Le Panier old town, Cours Julien creative quarter, La Plaine market, MuCEM museum and Fort Saint-Jean footbridge, Frioul archipelago and Château d'If, Vallon des Auffes fishing port (Chez Fonfon). Honest nut assessment — patisseries high-risk (financiers, macarons, frangipane), savoury Provençal food safer but watch for pistou (pine nuts) and almond-thickened sauces. Vegetarian guidance: city's identity is fish-based but North African influence around Noailles provides falafel/couscous/hummus, socca and panisse from street vendors, newer restaurants in Le Panier area. Real Unsplash photos used. Build verified — 21 pages (all 20 European destinations complete). Commit 73a43fc.
+
+--- Iteration 20: Fri 27 Mar 2026 ---
+Task: Phase 7 - Create Vancouver destination content
+Status: completed
+Changes: src/content/destinations/vancouver.md
+Notes: Created Vancouver, Canada destination with complete frontmatter (nut: 5, veggie: 5, £450 flights, £150/night hotel, 5-7 nights) and 4 body sections. Content covers Stanley Park Seawall (9km bike/walk), Granville Island Public Market (Lee's Donuts, Net Loft), Grouse Grind and Capilano Suspension Bridge, Museum of Anthropology at UBC (Bill Reid totem poles), Queen Elizabeth Park and Bloedel Conservatory, Sea-to-Sky Highway to Whistler day trip. Neighbourhood guide: Main Street/Mount Pleasant for restaurants, Gastown for cocktail bars (The Diamond, Pourhouse), Commercial Drive for indie coffee/Ethiopian food/vintage, Kitsilano for waterfront polish. Highlighted Canada's strict allergen labelling laws — one of safest destinations globally. Vegetarian scene: The Acorn, MeeT, Nuba, Chau Veggie Express. Honest about multicultural cuisines using nuts (Thai, Chinese, Indian) but English fluency and cultural awareness make communication easy. Real Unsplash photos used. Build verified — 22 pages. Commit 68fe04e.
+
+--- Iteration 21: Fri 27 Mar 2026 ---
+Task: Phase 7 - Create Montreal destination content
+Status: completed
+Changes: src/content/destinations/montreal.md
+Notes: Created Montreal, Canada destination with complete frontmatter (nut: 5, veggie: 4, £400 flights, £120/night hotel, 4-5 nights) and 4 body sections. Content covers Fairmount vs St-Viateur bagel debate, Mont Royal Kondiaronk Belvedere, Jean-Talon Market in Little Italy, Plateau Mont-Royal spiral staircases, Mile End creative scene, Old Montreal and Basilique Notre-Dame (neo-Gothic interior), Montreal Museum of Fine Arts, Parc Jean-Drapeau and Biosphère (Expo 67 geodesic dome), Quartier des Spectacles light installations. Highlighted Canada's strong allergen laws — one of safest destinations for nut allergies. French patisserie nut cautions noted but staff always knowledgeable. Vegetarian scene: Aux Vivres, LOV, classic poutine (ask about gravy base). Real Unsplash photos used. Build verified — 23 pages. Commit 26c579a.
+
+--- Iteration 22: Fri 27 Mar 2026 ---
+Task: Phase 7 - Create New York destination content
+Status: completed
+Changes: src/content/destinations/new-york.md
+Notes: Created New York, USA destination with complete frontmatter (nut: 4, veggie: 5, £350 flights, £200/night hotel, 5-7 nights) and 4 body sections. Content covers High Line walk through Chelsea, Brooklyn Bridge crossing to Dumbo and Juliana's Pizza, Chelsea Market (Los Tacos No. 1, Doughnuttery), Essex Market. Greenwich Village and East Village neighbourhood guide, Williamsburg (Devoción coffee, Domino Park), Midtown museums (Met, MoMA), TKTS tips. Central Park deep cuts (the Ramble, Conservatory Garden), the Cloisters medieval branch in Fort Tryon Park, free Staten Island Ferry for Statue of Liberty views, Grand Central Terminal zodiac ceiling. Allergen guidance: restaurants culturally accommodating, caution with bakeries (Levain, Dominique Ansel — tree nuts everywhere) and Chinatown (language barrier, peanut oil). Vegetarian paradise: Dirt Candy, Superiority Burger, Mamoun's falafel since 1971, Curry Hill thalis, corner pizza slices. Real Unsplash photos used. Build verified — 24 pages. Commit 94ac016.
+
+--- Iteration 23: Fri 27 Mar 2026 ---
+Task: Phase 7 - Create Mexico City destination content
+Status: completed
+Changes: src/content/destinations/mexico-city.md
+Notes: Created Mexico City, Mexico destination with complete frontmatter (nut: 4, veggie: 3, £400 flights, £80/night hotel, 5-7 nights) and 4 body sections. Content covers Roma Norte and Condesa neighbourhoods (Calle Álvaro Obregón, Avenida Amsterdam Art Deco boulevard), Mercado de Coyoacán, Centro Histórico taco stands on Calle de López, Chapultepec Park and Castillo, Museo Nacional de Antropología. Things to See: Palacio de Bellas Artes (Tiffany glass curtain, Rivera/Siqueiros murals), Templo Mayor (excavated Aztec temple, discovered 1978), Teotihuacán day trip (Pyramid of the Sun/Moon). Honest mole sauce nut warning — mole negro and mole almendrado contain ground peanuts/almonds, recommends asking "¿tiene cacahuates o nueces?". Vegetarian guidance: huitlacoche quesadillas, rajas con crema, esquites reliable at markets; modern Roma Norte scene (Por Siempre Vegana) good but traditional fondas meat-heavy, lard-cooked. Real Unsplash photos used. Build verified — 25 pages. Commit a83d7f6.
+
+--- Iteration 24: Fri 27 Mar 2026 ---
+Task: Phase 7 - Create Buenos Aires destination content
+Status: completed
+Changes: src/content/destinations/buenos-aires.md
+Notes: Created Buenos Aires, Argentina destination with complete frontmatter (nut: 4, veggie: 2, £550 flights, £70/night hotel, 5-7 nights) and 4 body sections. Content covers San Telmo Sunday market (Calle Defensa, Plaza Dorrego), milongas (La Catedral in Almagro), Tigre delta day trip, Recoleta Cemetery (Eva Perón's tomb, La Biela café), Teatro Colón guided tour, La Boca and Caminito, MALBA modern art museum in Palermo. Honest about being one of the hardest destinations for vegetarians — Argentine identity built around asado, traditional restaurants may only offer mixed salad or provoleta. Pointers to Palermo Soho (Buenos Aires Verde, Artemisia), fugazzeta pizza, fainá, bakery tartas de verdura. Nut allergy low-risk — savoury food is simple grilled preparations and chimichurri (no nuts), caution with heladerías (crocante/praline flavours) and artisanal alfajores. Included key Spanish phrase for vegetarians. Real Unsplash photos used. Build verified — 26 pages. All 5 Americas destinations complete. Commit b7e09be.
+
+--- Iteration 25: Thu 27 Mar 2026 ---
+Task: Phase 8 - Create Tokyo destination content
+Status: completed
+Changes: src/content/destinations/tokyo.md
+Notes: Created Tokyo, Japan destination with complete frontmatter (nut: 2, veggie: 2, £500 flights, £130/night hotel, 7-10 nights) and 4 body sections. Content covers Shinjuku (Golden Gai's tiny bars), Shibuya crossing, Daikanyama/Naka-Meguro canal walk, Meiji Shrine, Harajuku (Cat Street over Takeshita Street), Omotesando starchitect buildings. Things to See: Senso-ji early morning in Asakusa, Tsukiji Outer Market (tamagoyaki, uni, grilled scallops), teamLab Borderless at Azabudai Hills, Tokyo National Museum in Ueno, Kamakura day trip (Great Buddha, Daibutsu trail), Nikko shrines. Strong nut allergy warnings — sesame in almost everything, peanuts in sauces, language barrier makes communication difficult, printed Japanese allergy card essential. Chain restaurants and konbini (7-Eleven, Lawson, FamilyMart) safest due to allergen labelling. Vegetarian equally challenging — dashi (bonito fish stock) is in nearly everything including "vegetable" dishes. Pointers to shojin ryori (temple cuisine), T's TanTan vegan ramen in Tokyo Station, HappyCow app essential. Real Unsplash photos used. Build verified — 27 pages. Commit f56957e.
+
+--- Iteration 26: Thu 27 Mar 2026 ---
+Task: Phase 8 - Create Kyoto destination content
+Status: completed
+Changes: src/content/destinations/kyoto.md
+Notes: Created Kyoto, Japan destination with complete frontmatter (nut: 2, veggie: 3, £500 flights to Osaka, £120/night hotel, 4-5 nights) and 4 body sections. Content covers Fushimi Inari early morning strategy, Arashiyama (bamboo grove, Togetsukyo Bridge, Okochi Sanso, Tenryu-ji, Sagano Romantic Train), Gion district maiko sightings, Higashiyama flagstone lanes (Kiyomizu-dera, Ninenzaka, Sannenzaka). Things to See: Kinkaku-ji and Ginkaku-ji connected by the Philosopher's Path (cherry blossom and autumn highlights), Nijo Castle nightingale floors, Uji day trip for matcha and Byodo-in temple. Same serious nut allergy warnings as Tokyo — sesame ubiquitous, printed Japanese allergy card essential, konbini and chain restaurants safest. Vegetarian genuinely better than Tokyo due to shojin ryori tradition — Shigetsu at Tenryu-ji, Daitoku-ji temple restaurants, Mumokuteki Cafe. Real Unsplash photos used. Build verified — 28 pages. Commit 2ee23dd.
+
+--- Iteration 27: Thu 27 Mar 2026 ---
+Task: Phase 8 - Create Seoul destination content
+Status: completed
+Changes: src/content/destinations/seoul.md
+Notes: Created Seoul, South Korea destination with complete frontmatter (nut: 2, veggie: 2, £450 flights, £100/night hotel, 5-7 nights) and 4 body sections. Content covers Gyeongbokgung Palace (changing of the guard, hanbok rental), Bukchon Hanok Village, Hongdae nightlife and Mangwon Market, Changdeokgung Secret Garden, Namsan Tower, DMZ tour (JSA at Panmunjom), Ikseon-dong hanok cafes, Jogyesa Temple. Strong nut allergy warnings — sesame oil/seeds in virtually everything, peanuts in sauces and as garnishes, included Korean-language allergy phrase. Department store food halls (Shinsegae, Lotte) flagged as safest options. Vegetarian equally challenging — kimchi contains shrimp paste, soups use anchovy/beef stock. Temple food (sachal eumsik) as lifeline — Balwoo Gongyang (Michelin-starred), Sanchon, Osegyehyang. Papago translation app recommended over Google Translate for Korean. Real Unsplash photos used. Build verified — 29 pages. Commit ea5e479.
+
+--- Iteration 28: Thu 27 Mar 2026 ---
+Task: Phase 8 - Create Singapore destination content
+Status: completed
+Changes: src/content/destinations/singapore.md
+Notes: Created Singapore destination with complete frontmatter (nut: 2, veggie: 4, £450 flights, £150/night hotel, 4-5 nights) and 4 body sections. Content covers hawker centres (Maxwell Food Centre, Old Airport Road, Lau Pa Sat), Botanic Gardens and National Orchid Garden, Tiong Bahru neighbourhood, Gardens by the Bay (Supertree Grove sunset strategy, Cloud Forest dome), Marina Bay Sands and CÉ LA VI bar, Peranakan Museum, Pulau Ubin island day trip (Chek Jawa Wetlands). Strong nut allergy warnings — peanuts foundational across satay, gado-gado, nasi lemak, laksa pastes, Chinese stir-fries; English widely spoken as saving grace for communication. Vegetarian highlight: Little India (Komala Vilas, Ananda Bhavan), Chinese Buddhist vegetarian restaurants, Thunder Tea Rice at hawker centres. Belacan (shrimp paste) flagged as hidden trap in Malay dishes. Real Unsplash photos used. Build verified — 30 pages. Commit 642f516.
+
+--- Iteration 29: Thu 27 Mar 2026 ---
+Task: Phase 8 - Create Melbourne destination content
+Status: completed
+Changes: src/content/destinations/melbourne.md
+Notes: Created Melbourne, Australia destination with complete frontmatter (nut: 5, veggie: 5, £600 flights, £130/night hotel, 5-7 nights) and 4 body sections. Content covers laneway culture (Hosier Lane, Blender Lane, AC/DC Lane, Centre Place), café coffee obsession (Patricia Coffee Brewers, Market Lane), South Melbourne Market dim sims, free City Circle tram. Neighbourhood guide: Fitzroy (Brunswick and Gertrude Streets), Carlton (Lygon Street), Richmond (Victoria Street pho corridor). Things to See: NGV International and NGV Australia at Federation Square, Royal Botanic Gardens, Great Ocean Road day trip (Twelve Apostles, Lorne, Otway Rainforest), Yarra Valley wine region (De Bortoli, TarraWarra), Brighton Beach bathing boxes, St Kilda penguins at dusk. Highlighted Australia's strong Food Standards Code allergen laws — one of the safest destinations globally. Vegetarian paradise: Smith & Daughters, Transformer, Lentil As Anything; brunch culture naturally plant-forward. Real Unsplash photos used. Build verified — 31 pages. Commit f544d2e.
+
+--- Iteration 30: Thu 27 Mar 2026 ---
+Task: Phase 8 - Create Queenstown destination content
+Status: completed
+Changes: src/content/destinations/queenstown.md
+Notes: Created Queenstown, New Zealand destination with complete frontmatter (nut: 5, veggie: 3, £650 flights, £150/night hotel, 5-7 nights) and 4 body sections. Content covers Shotover Jet, AJ Hackett bungee at Kawarau Bridge, Skyline Gondola and luge, Routeburn Track day walk to Key Summit, Remarkables/Coronet Peak skiing. Things to See: Milford Sound cruise (smaller boat operators recommended), Arrowtown gold-rush settlement and Chinese miners' settlement, Glenorchy (Lord of the Rings filming locations), Gibbston Valley wine region (Chard Farm, Peregrine), Crown Range drive to Wanaka. Highlighted New Zealand's strong allergen laws — one of safest destinations globally. Vegetarian limited by small-town adventure-tourism focus but manageable — Fergburger "Bun Laden", Bespoke Kitchen, Rata vegetarian tasting menu, Thai/Indian restaurants. Real Unsplash photos used. Build verified — 32 pages. Commit e8d89c7.
+
+--- Iteration 31: Fri 27 Mar 2026 ---
+Task: Phase 8 - Create Marrakech destination content
+Status: completed
+Changes: src/content/destinations/marrakech.md
+Notes: Created Marrakech, Morocco destination with complete frontmatter (nut: 1, veggie: 3, £120 flights, £70/night hotel, 3-4 nights) and 4 body sections. Content covers Jemaa el-Fnaa evening strategy, souk navigation (Souk des Teinturiers, Place Seffarine metalworkers), traditional hammam (Dar el-Bacha). Things to See: Jardin Majorelle and Musée YSL (Studio KO architecture), Bahia Palace (Grand Courtyard, zellige tilework), Saadian Tombs (Chamber of Twelve Columns), Ourika Valley day trip (Setti Fatma waterfalls), Aït Benhaddou via Tizi n'Tichka pass. Major nut allergy warning — rated 1/5, the highest-risk destination in the entire guide. Almonds foundational to Moroccan cooking: pastilla, tagine sauces, amlou breakfast dip, chebakia pastries. Nuts often ground and invisible. French/Arabic allergy card strongly recommended. Vegetarian manageable: vegetable tagines, zaalouk, bessara, harira. Real Unsplash photos used. Build verified — 33 pages (all 32 destinations + homepage complete). Commit 09c55a7.
+
+--- Iteration 32: Fri 27 Mar 2026 ---
+Task: Phase 9 - Visual Verification & Polish (Task 1: Screenshots & Fixes)
+Status: completed
+Changes: src/layouts/BaseLayout.astro, src/content/destinations/paris.md, Plans/qa-screenshots/
+Notes: Visual verification revealed two issues: (1) Tailwind CSS was not loading because global.css was not imported in BaseLayout.astro — added the import and confirmed all styles now render correctly (3-column grid, card styling, badge colours, hero gradients). (2) Found one AI slop phrase in Paris content ("paradise for vegetarians") and replaced it. Verified: homepage renders all 32 cards in correct grid layout, Asia filter shows 4 cards with red nut badges, Barcelona detail page shows hero with gradient overlay + green badges + prose content, Tokyo detail page shows red badges for both allergen ratings. Mobile responsive CSS classes confirmed correct (grid-cols-1 md:grid-cols-2 lg:grid-cols-3). Build verified — 33 pages. Commit 0305d3d.
