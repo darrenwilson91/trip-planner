@@ -1,0 +1,21 @@
+---
+interface Props {
+  rating: number;
+  label: string;
+  size?: "sm" | "lg";
+}
+
+const { rating, label, size = "sm" } = Astro.props;
+
+function badgeClasses(rating: number): string {
+  if (rating >= 4) return "bg-emerald-100 text-emerald-800";
+  if (rating === 3) return "bg-amber-100 text-amber-800";
+  return "bg-red-100 text-red-800";
+}
+
+const sizeClasses = size === "lg" ? "px-4 py-1.5 text-sm" : "px-2.5 py-0.5 text-xs";
+---
+
+<span class={`inline-block rounded-full font-medium ${sizeClasses} ${badgeClasses(rating)}`}>
+  {label}: {rating}/5
+</span>
