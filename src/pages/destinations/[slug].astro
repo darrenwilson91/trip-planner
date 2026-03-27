@@ -1,0 +1,159 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AllergenBadge from '../../components/AllergenBadge.astro';
+
+export async function getStaticPaths() {
+  const destinations = await getCollection('destinations');
+  return destinations.map((dest) => ({
+    params: { slug: dest.id },
+    props: { destination: dest },
+  }));
+}
+
+const { destination } = Astro.props;
+const { data } = destination;
+const { Content } = await render(destination);
+
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function formatBestMonths(months: number[]): string {
+  if (months.length === 0) return '';
+  const sorted = [...months].sort((a, b) => a - b);
+
+  // Find consecutive ranges
+  const ranges: { start: number; end: number }[] = [];
+  let rangeStart = sorted[0];
+  let rangeEnd = sorted[0];
+
+  for (let i = 1; i < sorted.length; i++) {
+    if (sorted[i] === rangeEnd + 1) {
+      rangeEnd = sorted[i];
+    } else {
+      ranges.push({ start: rangeStart, end: rangeEnd });
+      rangeStart = sorted[i];
+      rangeEnd = sorted[i];
+    }
+  }
+  ranges.push({ start: rangeStart, end: rangeEnd });
+
+  return ranges
+    .map((r) =>
+      r.start === r.end
+        ? monthNames[r.start - 1]
+        : `${monthNames[r.start - 1]} \u2014 ${monthNames[r.end - 1]}`
+    )
+    .join(', ');
+}
+
+const bestMonthsFormatted = formatBestMonths(data.bestMonths);
+---
+
+<BaseLayout title={data.title} description={data.summary}>
+  <!-- Back navigation -->
+  <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+    <a href="/" class="text-sm text-stone-600 hover:text-stone-900 transition-colors">
+      &larr; Back to all destinations
+    </a>
+  </div>
+
+  <!-- Hero section -->
+  <div class="relative">
+    <img
+      src={data.heroImage}
+      alt={data.heroImageAlt}
+      class="w-full h-[50vh] object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
+      <div class="mx-auto max-w-7xl">
+        <h1 class="text-4xl sm:text-5xl font-bold text-white">{data.title}</h1>
+        <p class="text-xl text-white/90 mt-2">{data.country}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick facts bar -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+        <div>
+          <div class="text-2xl mb-1">📅</div>
+          <div class="text-sm text-stone-500">Best time</div>
+          <div class="font-medium text-stone-900">{bestMonthsFormatted}</div>
+        </div>
+        <div>
+          <div class="text-2xl mb-1">🗓️</div>
+          <div class="text-sm text-stone-500">Trip length</div>
+          <div class="font-medium text-stone-900">{data.tripLength}</div>
+        </div>
+        <div>
+          <div class="text-2xl mb-1">🏨</div>
+          <div class="text-sm text-stone-500">Hotel</div>
+          <div class="font-medium text-stone-900">~&pound;{data.hotelCostPerNight}/night</div>
+        </div>
+        <div>
+          <div class="text-2xl mb-1">✈️</div>
+          <div class="text-sm text-stone-500">Flights</div>
+          <div class="font-medium text-stone-900">~&pound;{data.flightCostReturn} return</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Allergen safety section -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h2 class="text-xl font-bold text-stone-900 mb-4">Allergen & Dietary Safety</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <div class="mb-2">
+            <AllergenBadge rating={data.nutAllergyRating} label="Nut Safe" size="lg" />
+          </div>
+          <p class="text-sm text-stone-600">{data.allergenNotes}</p>
+        </div>
+        <div>
+          <div class="mb-2">
+            <AllergenBadge rating={data.vegetarianRating} label="Veggie" size="lg" />
+          </div>
+          <p class="text-sm text-stone-600">{data.vegetarianNotes}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content sections -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+    <div class="prose prose-stone prose-lg max-w-none">
+      <Content />
+    </div>
+  </div>
+
+  <!-- Image gallery -->
+  {data.images.length > 0 && (
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12">
+      <h2 class="text-xl font-bold text-stone-900 mb-4">Photos</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {data.images.map((image) => (
+          <div class="rounded-xl overflow-hidden">
+            <img
+              src={image.url}
+              alt={image.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-64 object-cover"
+            />
+            <p class="text-sm text-stone-500 mt-2 px-1">{image.alt}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Bottom navigation -->
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <a href="/" class="text-sm text-stone-600 hover:text-stone-900 transition-colors">
+      &larr; Back to all destinations
+    </a>
+  </div>
+</BaseLayout>

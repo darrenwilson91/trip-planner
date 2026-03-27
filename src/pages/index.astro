@@ -1,0 +1,128 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DestinationCard from '../components/DestinationCard.astro';
+
+const destinations = await getCollection('destinations');
+destinations.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const regions = ['all', 'europe', 'americas', 'asia', 'oceania', 'africa'] as const;
+const regionLabels: Record<string, string> = {
+  all: 'All',
+  europe: 'Europe',
+  americas: 'Americas',
+  asia: 'Asia',
+  oceania: 'Oceania',
+  africa: 'Africa',
+};
+---
+
+<BaseLayout title="Holiday Destinations">
+  <section class="bg-white border-b border-stone-200">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <h1 class="text-5xl font-bold text-stone-900">Where to Next?</h1>
+      <p class="text-xl text-stone-600 mt-4">A curated guide for Darren &amp; Anthony — with allergen safety ratings for every destination</p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-wrap gap-2 mb-8" id="filter-bar">
+      {regions.map((region) => (
+        <button
+          type="button"
+          data-filter={region}
+          class:list={[
+            'filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors',
+            region === 'all'
+              ? 'bg-stone-900 text-white'
+              : 'bg-stone-200 text-stone-700 hover:bg-stone-300',
+          ]}
+        >
+          {regionLabels[region]}
+        </button>
+      ))}
+      <button
+        type="button"
+        id="nut-safe-toggle"
+        class="px-4 py-2 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800 hover:bg-emerald-200 transition-colors ml-2"
+      >
+        🥜 Nut-safe only
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="card-grid">
+      {destinations.map((destination) => (
+        <div
+          class="card-wrapper"
+          data-region={destination.data.region}
+          data-nut-rating={destination.data.nutAllergyRating}
+        >
+          <DestinationCard
+            title={destination.data.title}
+            country={destination.data.country}
+            region={destination.data.region}
+            slug={destination.id}
+            heroImage={destination.data.heroImage}
+            heroImageAlt={destination.data.heroImageAlt}
+            summary={destination.data.summary}
+            tripLength={destination.data.tripLength}
+            hotelCostPerNight={destination.data.hotelCostPerNight}
+            flightCostReturn={destination.data.flightCostReturn}
+            nutAllergyRating={destination.data.nutAllergyRating}
+            vegetarianRating={destination.data.vegetarianRating}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <script>
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const nutSafeToggle = document.getElementById('nut-safe-toggle') as HTMLButtonElement;
+    const cards = document.querySelectorAll<HTMLDivElement>('.card-wrapper');
+
+    let activeRegion = 'all';
+    let nutSafeOnly = false;
+
+    function applyFilters() {
+      cards.forEach((card) => {
+        const region = card.dataset.region;
+        const nutRating = parseInt(card.dataset.nutRating || '0', 10);
+
+        const matchesRegion = activeRegion === 'all' || region === activeRegion;
+        const matchesNut = !nutSafeOnly || nutRating >= 4;
+
+        card.style.display = matchesRegion && matchesNut ? '' : 'none';
+      });
+    }
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeRegion = btn.dataset.filter || 'all';
+
+        filterButtons.forEach((b) => {
+          b.classList.remove('bg-stone-900', 'text-white');
+          b.classList.add('bg-stone-200', 'text-stone-700');
+        });
+        btn.classList.remove('bg-stone-200', 'text-stone-700');
+        btn.classList.add('bg-stone-900', 'text-white');
+
+        applyFilters();
+      });
+    });
+
+    nutSafeToggle.addEventListener('click', () => {
+      nutSafeOnly = !nutSafeOnly;
+
+      if (nutSafeOnly) {
+        nutSafeToggle.classList.remove('bg-emerald-100', 'text-emerald-800');
+        nutSafeToggle.classList.add('bg-emerald-600', 'text-white');
+      } else {
+        nutSafeToggle.classList.remove('bg-emerald-600', 'text-white');
+        nutSafeToggle.classList.add('bg-emerald-100', 'text-emerald-800');
+      }
+
+      applyFilters();
+    });
+  </script>
+</BaseLayout>

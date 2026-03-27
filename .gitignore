@@ -4,6 +4,9 @@ node_modules/
 # Build output
 dist/
 
+# Generated types
+.astro/
+
 # Environment
 .env
 .env.*
@@ -19,5 +22,8 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Astro
-.astro/
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
