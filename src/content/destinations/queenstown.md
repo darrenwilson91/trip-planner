@@ -36,7 +36,7 @@ The eating-out scene punches above what you'd expect from a town this size. Ferg
 
 ## Things to See
 
-Milford Sound is the big day trip and it lives up to its reputation. The drive alone — through the Eglinton Valley, past Mirror Lakes, through the Homer Tunnel — takes about four hours each way and is spectacular throughout. The cruise on the fiord itself, with Mitre Peak rising straight up out of the water and waterfalls pouring off the cliff faces, is one of those genuinely awe-inspiring natural sights. Book a smaller boat operator rather than the large cruise ships if you can — less crowded and they get closer to the falls.
+Milford Sound is the big day trip and it lives up to its reputation. The drive alone — through the Eglinton Valley, past Mirror Lakes, through the Homer Tunnel — takes about four hours each way and is spectacular throughout. The cruise on the fiord itself, with Mitre Peak rising straight up out of the water and waterfalls pouring off the cliff faces, is the kind of scenery that makes you put your phone down and just stare. Book a smaller boat operator rather than the large cruise ships if you can — less crowded and they get closer to the falls.
 
 Arrowtown is twenty minutes from Queenstown and worth a half-day. It's a gold-rush era settlement with a preserved main street of stone cottages, good cafes, and the eerie remains of the Chinese miners' settlement by the Arrow River. In autumn (April-May), the trees along the river turn extraordinary shades of gold and red. Glenorchy, at the head of Lake Wakatipu, is a forty-five minute drive on a road that follows the lake shore with mountains on both sides — it was used as a Lord of the Rings filming location (Isengard, Lothlórien) and honestly, you'll see why immediately.
 

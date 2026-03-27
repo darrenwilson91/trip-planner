@@ -34,7 +34,7 @@ The centro storico around Piazza Navona and Campo de' Fiori is beautiful but hea
 
 ## Things to See
 
-Beyond the obvious trinity of Colosseum, Forum, and Vatican — the Pantheon is free and genuinely awe-inspiring. Stand underneath the oculus when it's raining for the full effect. The Borghese Gallery requires advance booking (they limit numbers strictly) but the Bernini sculptures inside are worth any logistical hassle. Apollo and Daphne alone is one of the greatest things anyone has ever carved from stone.
+Beyond the obvious trinity of Colosseum, Forum, and Vatican — the Pantheon is free and still stops you in your tracks. Stand underneath the oculus when it's raining for the full effect. The Borghese Gallery requires advance booking (they limit numbers strictly) but the Bernini sculptures inside are worth any logistical hassle. Apollo and Daphne alone is one of the greatest things anyone has ever carved from stone.
 
 The Appian Way on a Sunday, when it's closed to traffic, is an extraordinary walk — ancient Roman road stretching out into the countryside past tombs and catacombs. Rent bikes from the visitor centre and cycle it. The Capitoline Museums on the Campidoglio are the world's oldest public museums and consistently less crowded than the Vatican. For modern art, MAXXI in the Flaminio district is worth the trek — Zaha Hadid's building is as much the attraction as the exhibitions inside.
 
